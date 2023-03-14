@@ -3,26 +3,20 @@ import { Helmet } from "react-helmet";
 import { useScript } from "./hooks";
 
 function App() {
-  const status = useScript(
-    "//dapi.kakao.com/v2/maps/sdk.js?appkey=46c306b69d86ff0129f2ce0a9992a3df"
-  );
-  // useEffect(() => {
-  //   if (status === "ready") {
-  //     // sdk 초기화하기
-  //     window.SomeThingSDK();
-  //   }
-  // });
+    const status = useScript(
+        "//dapi.kakao.com/v2/maps/sdk.js?appkey=46c306b69d86ff0129f2ce0a9992a3df"
+    );
+    // useEffect(() => {
+    //   if (status === "ready") {
+    //     // sdk 초기화하기
+    //     window.SomeThingSDK();
+    //   }
+    // });
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.innerHTML = `         
-    var container = document.getElementById("map");
-    var options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
-      level: 3,
-    };
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.innerHTML = `         
 
-    var map = new kakao.maps.Map(container, options)
 
     var roadviewContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
 var roadview = new kakao.maps.Roadview(roadviewContainer); //로드뷰 객체
@@ -35,14 +29,14 @@ roadviewClient.getNearestPanoId(position, 50, function(panoId) {
     roadview.setPanoId(panoId, position); //panoId와 중심좌표를 통해 로드뷰 실행
 });
    `;
-    script.type = "text/javascript";
-    script.async = "async";
-    document.head.appendChild(script);
-  }, []);
+        script.type = "text/javascript";
+        script.async = "async";
+        document.head.appendChild(script);
+    }, []);
 
-  return (
-    <div>
-      {/* <Helmet>
+    return (
+        <div>
+            {/* <Helmet>
         <div id="map" style="width:500px;height:400px;"></div>
         <script
           type="text/javascript"
@@ -60,10 +54,18 @@ roadviewClient.getNearestPanoId(position, 50, function(panoId) {
           }}
         </script>
       </Helmet> */}
-      <div id="map" style={{ width: 500, height: 400 }}></div>
-      <div id="roadview" style={{ width: 500, height: 400 }}></div>
-    </div>
-  );
+
+            <div
+                id="roadview"
+                style={{
+                    width: 500,
+                    height: 500,
+                    marginTop: -8,
+                    marginLeft: -8,
+                }}
+            ></div>
+        </div>
+    );
 }
 
 export default App;
