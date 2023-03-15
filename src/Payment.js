@@ -7,7 +7,7 @@ async function Payment() {
         order_name: "테스트결제",
         order_id: "TEST_ORDER_ID",
         pg: "나이스페이",
-        method: "가상계좌",
+        // method: "가상계좌",
         tax_free: 0,
         user: {
             id: "회원아이디",
