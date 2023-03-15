@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useScript } from "./hooks";
+import Payment from "./Payment";
 
 function App() {
     const status = useScript(
@@ -34,6 +35,7 @@ roadviewClient.getNearestPanoId(position, 50, function(panoId) {
         document.head.appendChild(script);
     }, []);
 
+    Payment();
     return (
         <div>
             {/* <Helmet>
