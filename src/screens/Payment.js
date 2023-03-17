@@ -1,46 +1,46 @@
 import { Bootpay } from "@bootpay/client-js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Payment() {
-    const requestPayment = async () => {
+    const [data, setData] = useState({});
+    const requestPayment = async (event) => {
+        const parsed = JSON.parse(event.data);
+
         try {
             const response = await Bootpay.requestPayment({
-                application_id: "641080ba755e27001c692292",
-                price: 1000,
-                order_name: "테스트결제",
-                order_id: "TEST_ORDER_ID",
+                application_id: parsed.application_id,
+                price: parsed.price,
+                order_name: parsed.order_name,
+                order_id: parsed.order_id,
                 pg: "나이스페이",
-                // method: "가상계좌",
                 tax_free: 0,
                 user: {
-                    id: "회원아이디",
-                    username: "회원이름",
-                    phone: "01000000000",
-                    email: "test@test.com",
+                    username: parsed.user.username,
+                    phone: parsed.user.phone,
                 },
-                items: [
-                    {
-                        id: "item_id",
-                        name: "테스트아이템",
-                        qty: 1,
-                        price: 1000,
-                    },
-                ],
                 extra: {
                     open_type: "iframe",
                     card_quota: "0,2,3",
                     escrow: false,
+                    // separately_confirmed:true
                 },
             });
 
             console.log(response);
-
+            alert(response.event);
             switch (response.event) {
                 case "issued":
                     // 가상계좌 입금 완료 처리
+                    response.handle = "issued";
+                    window.ReactNativeWebView.postMessage(
+                        JSON.stringify(response)
+                    );
                     break;
                 case "done":
-                    console.log(response);
+                    response.handle = "done";
+                    window.ReactNativeWebView.postMessage(
+                        JSON.stringify(response)
+                    );
                     // 결제 완료 처리
                     break;
                 case "confirm": //payload.extra.separately_confirmed = true; 일 경우 승인 전 해당 이벤트가 호출됨
@@ -63,30 +63,29 @@ function Payment() {
             }
         } catch (e) {
             console.log(e.message);
+
             switch (e.event) {
                 case "cancel":
                     // 사용자가 결제창을 닫을때 호출
-                    console.log(e.message);
+                    e.handle = "cancel";
+                    window.ReactNativeWebView.postMessage(JSON.stringify(e));
                     break;
                 case "error":
                     // 결제 승인 중 오류 발생시 호출
                     console.log(e.error_code);
+                    e.handle = "error";
+                    window.ReactNativeWebView.postMessage(JSON.stringify(e));
                     break;
             }
         }
     };
 
     useEffect(() => {
-        document.addEventListener("message", receiveMessage);
-        requestPayment();
+        document.addEventListener("message", requestPayment);
     }, []);
 
     const sendMessage = (str) => {
         window.ReactNativeWebView.postMessage(str);
-    };
-
-    const receiveMessage = (event) => {
-        // alert("받은 데이터(Web) : " + event.data);
     };
 
     return <div></div>;
