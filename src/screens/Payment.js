@@ -63,7 +63,7 @@ function Payment() {
             }
         } catch (e) {
             console.log(e.message);
-
+            console.log("e.message");
             switch (e.event) {
                 case "cancel":
                     // 사용자가 결제창을 닫을때 호출
