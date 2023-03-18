@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function Map() {
+function Map2() {
     const [lat, setLat] = useState("");
     const [lng, setLng] = useState("");
     useEffect(() => {
@@ -58,4 +58,4 @@ function Map() {
     );
 }
 
-export default Map;
+export default Map2;
