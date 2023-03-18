@@ -27,7 +27,7 @@ function Payment() {
             });
 
             console.log(response);
-            alert(response.event);
+
             switch (response.event) {
                 case "issued":
                     // 가상계좌 입금 완료 처리
