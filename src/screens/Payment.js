@@ -15,7 +15,7 @@ function Payment() {
                 pg: "나이스페이",
                 tax_free: 0,
                 user: {
-                    username: parsed.user.username,
+                    username: parsed.user.username || "알테구",
                     phone: parsed.user.phone,
                 },
                 extra: {
