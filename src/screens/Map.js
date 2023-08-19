@@ -51,7 +51,7 @@ function Map() {
         <div
             id="roadview"
             style={{
-                width: 350,
+                width: 400,
                 height: 350,
                 marginTop: -8,
                 marginLeft: -8,
