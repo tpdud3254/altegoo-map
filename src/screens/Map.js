@@ -22,6 +22,8 @@ function Map() {
                     }
                 );
 
+                console.log(response);
+
                 setLng(response.data.documents[0].x);
                 setLat(response.data.documents[0].y);
             } catch (error) {}
