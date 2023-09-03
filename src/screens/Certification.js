@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 const SERVER = "https://altegoo.shop";
 
 function Certification() {
+    const [value, setValue] = useState("");
     useEffect(() => {
         document.addEventListener("message", request);
         getTest();
@@ -13,7 +14,7 @@ function Certification() {
     const getTest = async () => {
         try {
             const response = await axios.get(SERVER + "/users/certification");
-
+            setValue(JSON.stringify(response));
             console.log(response);
         } catch (error) {
             console.log(error);
@@ -23,7 +24,7 @@ function Certification() {
     const request = async (event) => {
         const parsed = JSON.parse(event.data);
         console.log("parsed : ", parsed);
-        alert(parsed);
+        // alert(parsed);
     };
 
     const sendMessage = (str) => {
@@ -56,7 +57,7 @@ function Certification() {
     //     });
     // }, []);
 
-    return <div>안녕~</div>;
+    return <div>{value}</div>;
 }
 
 export default Certification;
