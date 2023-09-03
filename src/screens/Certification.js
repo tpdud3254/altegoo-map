@@ -5,6 +5,7 @@ const SERVER = "https://altegoo.shop";
 
 function Certification() {
     useEffect(() => {
+        document.addEventListener("message", request);
         getTest();
     }, []);
 
@@ -16,6 +17,11 @@ function Certification() {
         } catch (error) {
             console.log(error);
         }
+    };
+
+    const request = async (event) => {
+        const parsed = JSON.parse(event.data);
+        console.log("parsed : ", parsed);
     };
 
     // useEffect(() => {
@@ -44,7 +50,7 @@ function Certification() {
     //     });
     // }, []);
 
-    return <div></div>;
+    return <div>안녕~</div>;
 }
 
 export default Certification;
