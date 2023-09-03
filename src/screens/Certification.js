@@ -32,6 +32,18 @@ function Certification() {
         console.log("enc_data : ", enc_data);
         console.log("key : ", key);
         console.log("iv : ", iv);
+
+        const encryptedBuffer = Buffer.from(enc_data, "base64");
+
+        const decipher = crypto.createDecipheriv(
+            "aes-128-cbc",
+            Buffer.from(key),
+            Buffer.from(iv)
+        );
+        let decryptedData = decipher.update(encryptedBuffer, null, "utf-8");
+        decryptedData += decipher.final("utf-8");
+
+        console.log("복호화된 데이터:", decryptedData);
     };
 
     const getTest = async () => {
