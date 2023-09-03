@@ -22,6 +22,7 @@ function Certification() {
     const request = async (event) => {
         const parsed = JSON.parse(event.data);
         console.log("parsed : ", parsed);
+        alert(parsed);
     };
 
     // useEffect(() => {
