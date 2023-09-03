@@ -10,13 +10,15 @@ function Certification() {
     const [tokenVersionId, setTokenVersionId] = useState(null);
     const [encData, setEncData] = useState(null);
     const [integrityValue, setIntegrityValue] = useState(null);
+    const [key, setKey] = useState(null);
+    const [iv, setIv] = useState(null);
 
     const formRef = useRef(null);
+
     useEffect(() => {
         if (window.location.search) {
             const qs = queryString.parse(window.location.search);
-
-            console.log(qs);
+            decoding(qs.enc_data, key, iv);
         } else {
             getTest();
         }
@@ -24,6 +26,12 @@ function Certification() {
 
         // sendMessage("dasdf");
     }, []);
+
+    const decoding = (enc_data, key, iv) => {
+        console.log("enc_data : ", enc_data);
+        console.log("key : ", key);
+        console.log("iv : ", iv);
+    };
 
     const getTest = async () => {
         try {
@@ -46,6 +54,8 @@ function Certification() {
                 setTokenVersionId(data.token_version_id);
                 setEncData(data.enc_data);
                 setIntegrityValue(data.integrity_value);
+                setKey(data.key);
+                setIv(data.iv);
 
                 setLoading(false);
 
