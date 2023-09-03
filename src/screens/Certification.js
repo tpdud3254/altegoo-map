@@ -39,7 +39,6 @@ function Certification() {
                 data: { result },
             } = response;
 
-            console.log("decoding : ", response);
             if (result === "VALID") {
                 const {
                     data: {
@@ -47,8 +46,20 @@ function Certification() {
                     },
                 } = response;
 
-                console.log(JSON.parse(data));
-                setValue(JSON.parse(data).utf8_name);
+                const parsed = JSON.parse(data);
+
+                console.log("decoding : ", parsed);
+
+                const sendData = {
+                    birth: parsed.birthdate,
+                    phone: parsed.mobileno,
+                    name: decodeURI(parsed.utf8_name),
+                    gender: parsed.gender === 0 ? "여" : "남",
+                };
+
+                sendMessage(JSON.stringify(sendData));
+                console.log(sendData);
+
                 setLoading(false);
             }
         } catch (error) {
@@ -152,7 +163,6 @@ function Certification() {
                         value={integrityValue}
                     />
                     <button type="submit">본인 인증</button>
-                    {value}
                 </form>
             )}
         </>
