@@ -49,6 +49,7 @@ function Certification() {
 
                 console.log(data);
                 setValue(data.name);
+                setLoading(false);
             }
         } catch (error) {
             console.log(error);
