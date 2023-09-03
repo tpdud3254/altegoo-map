@@ -21,7 +21,6 @@ function Certification() {
         try {
             const response = await axios.get(SERVER + "/users/certification");
             setValue(JSON.stringify(response));
-            console.log(response);
 
             const {
                 data: { result },
@@ -33,6 +32,8 @@ function Certification() {
                         data: { data },
                     },
                 } = response;
+
+                console.log(data);
 
                 setTokenVersionId(data.token_version_id);
                 setEncData(data.enc_data);
