@@ -1,14 +1,22 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const NICE_SERVER = "https://svc.niceapi.co.kr:22001";
-const client_id = "2d981f65-0f61-4a27-b076-5ed681f30763";
-const client_secret = "c26a268437276d584bbc0361224ff79a";
+const SERVER = "https://altegoo.shop";
 
 function Certification() {
     useEffect(() => {
-        console.log("hi~");
+        getTest();
     }, []);
+
+    const getTest = async () => {
+        try {
+            const response = await axios.get(SERVER + "/users/certification");
+
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     // useEffect(() => {
     //     document.addEventListener("message", async (event) => {
