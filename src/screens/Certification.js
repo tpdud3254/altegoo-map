@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import queryString from "query-string";
 
 const SERVER = "https://altegoo.shop";
 
@@ -12,8 +13,15 @@ function Certification() {
 
     const formRef = useRef(null);
     useEffect(() => {
-        document.addEventListener("message", request);
-        getTest();
+        if (window.location.search) {
+            const qs = queryString.parse(window.location.search);
+
+            console.log(qs);
+        } else {
+            getTest();
+        }
+        // document.addEventListener("message", request);
+
         // sendMessage("dasdf");
     }, []);
 
