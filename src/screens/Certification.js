@@ -47,8 +47,8 @@ function Certification() {
                     },
                 } = response;
 
-                console.log(data);
-                setValue(data.name);
+                console.log(JSON.parse(data));
+                setValue(JSON.parse(data).name);
                 setLoading(false);
             }
         } catch (error) {
