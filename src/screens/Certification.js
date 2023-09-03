@@ -23,7 +23,9 @@ function Certification() {
             setValue(JSON.stringify(response));
             console.log(response);
 
-            const { data: result } = response;
+            const {
+                data: { result },
+            } = response;
 
             if (result === "VALID") {
                 const {
