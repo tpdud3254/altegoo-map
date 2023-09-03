@@ -11,7 +11,7 @@ function Certification() {
     const [encData, setEncData] = useState(null);
     const [integrityValue, setIntegrityValue] = useState(null);
 
-    const formRef = useRef(null);
+    const btnRef = useRef(null);
 
     useEffect(() => {
         if (window.location.search) {
@@ -91,7 +91,7 @@ function Certification() {
                 localStorage.setItem("iv", data.iv);
                 setLoading(false);
 
-                formRef.current.submit();
+                btnRef.current.click();
             }
         } catch (error) {
             console.log(error);
@@ -138,7 +138,6 @@ function Certification() {
         <>
             {loading ? null : (
                 <form
-                    ref={formRef}
                     name="form"
                     id="form"
                     action="https://nice.checkplus.co.kr/CheckPlusSafeModel/service.cb"
@@ -162,7 +161,9 @@ function Certification() {
                         name="integrity_value"
                         value={integrityValue}
                     />
-                    <button type="submit">본인 인증</button>
+                    <button type="submit" ref={btnRef}>
+                        본인 인증
+                    </button>
                 </form>
             )}
         </>
