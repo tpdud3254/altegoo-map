@@ -11,7 +11,7 @@ function App() {
                 <Route path="/map" element={<Map />} />
                 <Route path="/map2" element={<Map2 />} />
                 <Route path="/payment" element={<Payment />} />
-                {/* <Route path="/certification" element={<Certification />} /> */}
+                <Route path="/certification" element={<Certification />} />
             </Routes>
         </div>
     );
