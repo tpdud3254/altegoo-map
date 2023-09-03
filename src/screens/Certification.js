@@ -7,6 +7,7 @@ function Certification() {
     useEffect(() => {
         document.addEventListener("message", request);
         getTest();
+        sendMessage("dasdf");
     }, []);
 
     const getTest = async () => {
@@ -23,6 +24,10 @@ function Certification() {
         const parsed = JSON.parse(event.data);
         console.log("parsed : ", parsed);
         alert(parsed);
+    };
+
+    const sendMessage = (str) => {
+        window.ReactNativeWebView.postMessage(str);
     };
 
     // useEffect(() => {
