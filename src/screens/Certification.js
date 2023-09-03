@@ -16,7 +16,9 @@ function Certification() {
     useEffect(() => {
         if (window.location.search) {
             const qs = queryString.parse(window.location.search);
-            decoding(qs.enc_data);
+            const key = localStorage.getItem("key");
+            const iv = localStorage.getItem("iv");
+            decoding(qs.enc_data, key, iv);
         } else {
             getTest();
         }
@@ -25,31 +27,36 @@ function Certification() {
         // sendMessage("dasdf");
     }, []);
 
-    const decoding = (enc_data) => {
-        const key = localStorage.getItem("key");
-        const iv = localStorage.getItem("iv");
+    const decoding = async (enc_data, key, iv) => {
+        try {
+            const response = await axios.post(SERVER + "/users/certification", {
+                enc_data,
+                key,
+                iv,
+            });
 
-        console.log("enc_data : ", enc_data);
-        console.log("key : ", key);
-        console.log("iv : ", iv);
+            const {
+                data: { result },
+            } = response;
 
-        const encryptedBuffer = Buffer.from(enc_data, "base64");
+            console.log("decoding : ", response);
+            if (result === "VALID") {
+                const {
+                    data: {
+                        data: { data },
+                    },
+                } = response;
 
-        const decipher = crypto.createDecipheriv(
-            "aes-128-cbc",
-            Buffer.from(key),
-            Buffer.from(iv)
-        );
-        let decryptedData = decipher.update(encryptedBuffer, null, "utf-8");
-        decryptedData += decipher.final("utf-8");
-
-        console.log("복호화된 데이터:", decryptedData);
+                console.log(data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const getTest = async () => {
         try {
             const response = await axios.get(SERVER + "/users/certification");
-            setValue(JSON.stringify(response));
 
             const {
                 data: { result },
