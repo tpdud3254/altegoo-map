@@ -10,7 +10,7 @@ function Certification() {
     const [encData, setEncData] = useState(null);
     const [integrityValue, setIntegrityValue] = useState(null);
 
-    const formRef = useRef();
+    const formRef = useRef(null);
     useEffect(() => {
         document.addEventListener("message", request);
         getTest();
@@ -40,7 +40,7 @@ function Certification() {
 
                 setLoading(false);
 
-                console.log(formRef);
+                formRef.current.submit();
             }
         } catch (error) {
             console.log(error);
