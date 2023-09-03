@@ -76,36 +76,35 @@ function Certification() {
     //     });
     // }, []);
 
-    // return (
-    //     <form
-    //         ref={formRef}
-    //         name="form"
-    //         id="form"
-    //         action="https://nice.checkplus.co.kr/CheckPlusSafeModel/service.cb"
-    //     >
-    //         <input type="hidden" id="m" name="m" value="service" />
-    //         <input
-    //             type="hidden"
-    //             id="token_version_id"
-    //             name="token_version_id"
-    //             value={tokenVersionId}
-    //         />
-    //         <input
-    //             type="hidden"
-    //             id="enc_data"
-    //             name="enc_data"
-    //             value={encData}
-    //         />
-    //         <input
-    //             type="hidden"
-    //             id="integrity_value"
-    //             name="integrity_value"
-    //             value={integrityValue}
-    //         />
-    //     </form>
-    // );
-
-    return <div>{formRef.current}</div>;
+    return (
+        <form
+            ref={formRef}
+            name="form"
+            id="form"
+            action="https://nice.checkplus.co.kr/CheckPlusSafeModel/service.cb"
+        >
+            <input type="hidden" id="m" name="m" value="service" />
+            <input
+                type="hidden"
+                id="token_version_id"
+                name="token_version_id"
+                value={tokenVersionId}
+            />
+            <input
+                type="hidden"
+                id="enc_data"
+                name="enc_data"
+                value={encData}
+            />
+            <input
+                type="hidden"
+                id="integrity_value"
+                name="integrity_value"
+                value={integrityValue}
+            />
+            <div>{formRef.current}</div>
+        </form>
+    );
 }
 
 export default Certification;
