@@ -37,6 +37,8 @@ function Certification() {
                 setIntegrityValue(data.integrity_value);
 
                 setLoading(false);
+
+                console.log(formRef);
             }
         } catch (error) {
             console.log(error);
@@ -107,7 +109,6 @@ function Certification() {
                         name="integrity_value"
                         value={integrityValue}
                     />
-                    <div>{formRef.current}</div>
                 </form>
             )}
         </>
