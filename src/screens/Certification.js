@@ -1,10 +1,15 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const SERVER = "https://altegoo.shop";
 
 function Certification() {
     const [value, setValue] = useState("");
+    const [tokenVersionId, setTokenVersionId] = useState(null);
+    const [encData, setEncData] = useState(null);
+    const [integrityValue, setIntegrityValue] = useState(null);
+
+    const formRef = useRef();
     useEffect(() => {
         document.addEventListener("message", request);
         getTest();
@@ -16,6 +21,20 @@ function Certification() {
             const response = await axios.get(SERVER + "/users/certification");
             setValue(JSON.stringify(response));
             console.log(response);
+
+            const { data: result } = response;
+
+            if (result === "VALID") {
+                const {
+                    data: {
+                        data: { data },
+                    },
+                } = response;
+
+                setTokenVersionId(data.token_version_id);
+                setEncData(data.enc_data);
+                setIntegrityValue(data.integrity_value);
+            }
         } catch (error) {
             console.log(error);
         }
@@ -57,7 +76,36 @@ function Certification() {
     //     });
     // }, []);
 
-    return <div>{value}</div>;
+    // return (
+    //     <form
+    //         ref={formRef}
+    //         name="form"
+    //         id="form"
+    //         action="https://nice.checkplus.co.kr/CheckPlusSafeModel/service.cb"
+    //     >
+    //         <input type="hidden" id="m" name="m" value="service" />
+    //         <input
+    //             type="hidden"
+    //             id="token_version_id"
+    //             name="token_version_id"
+    //             value={tokenVersionId}
+    //         />
+    //         <input
+    //             type="hidden"
+    //             id="enc_data"
+    //             name="enc_data"
+    //             value={encData}
+    //         />
+    //         <input
+    //             type="hidden"
+    //             id="integrity_value"
+    //             name="integrity_value"
+    //             value={integrityValue}
+    //         />
+    //     </form>
+    // );
+
+    return <div>{formRef.current}</div>;
 }
 
 export default Certification;
