@@ -54,7 +54,7 @@ function Certification() {
                     birth: parsed.birthdate,
                     phone: parsed.mobileno,
                     name: decodeURI(parsed.utf8_name),
-                    gender: parsed.gender === 0 ? "여" : "남",
+                    gender: parsed.gender === "0" ? "여" : "남",
                 };
 
                 sendMessage(JSON.stringify(sendData));
