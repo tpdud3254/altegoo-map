@@ -7,7 +7,7 @@ function Certification() {
     useEffect(() => {
         document.addEventListener("message", request);
         getTest();
-        sendMessage("dasdf");
+        // sendMessage("dasdf");
     }, []);
 
     const getTest = async () => {
