@@ -151,6 +151,7 @@ function Certification() {
                         value={integrityValue}
                     />
                     <button type="submit">본인 인증</button>
+                    {value}
                 </form>
             )}
         </>
