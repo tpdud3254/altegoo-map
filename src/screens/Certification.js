@@ -113,6 +113,7 @@ function Certification() {
     const cancel = (e) => {
         e.preventdefault();
         sendMessage(JSON.stringify({ result: "cancel" }));
+        throw new Error("cancel");
     };
 
     return (
