@@ -14,6 +14,9 @@ function Certification() {
     const formRef = useRef(null);
 
     useEffect(() => {
+        document.getElementsByTagName("body")[0].style.backgroundColor =
+            "#00000055";
+
         if (window.location.search) {
             const qs = queryString.parse(window.location.search);
             const key = localStorage.getItem("key");
@@ -90,8 +93,6 @@ function Certification() {
                 localStorage.setItem("key", data.key);
                 localStorage.setItem("iv", data.iv);
                 setLoading(false);
-                console.dir(formRef.current);
-                formRef.current.submit();
             }
         } catch (error) {
             console.log(error);
@@ -108,62 +109,115 @@ function Certification() {
         window.ReactNativeWebView.postMessage(str);
     };
 
-    // useEffect(() => {
-    //     document.addEventListener("message", async (event) => {
-    //         const parsed = JSON.parse(event.data);
-
-    //         try {
-    //             const response = await axios.get(
-    //                 "https://dapi.kakao.com/v2/local/search/address.json",
-    //                 {
-    //                     params: {
-    //                         query: parsed.address,
-    //                     },
-    //                     headers: {
-    //                         Authorization:
-    //                             "KakaoAK 86e0df46fbae745bb4c658276b280088",
-    //                     },
-    //                 }
-    //             );
-
-    //             console.log(response);
-
-    //             setLng(response.data.documents[0].x);
-    //             setLat(response.data.documents[0].y);
-    //         } catch (error) {}
-    //     });
-    // }, []);
+    const cancel = () => {
+        sendMessage("cancel");
+    };
 
     return (
         <>
             {loading ? null : (
-                <form
-                    ref={formRef}
-                    name="form"
-                    id="form"
-                    action="https://nice.checkplus.co.kr/CheckPlusSafeModel/service.cb"
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginTop: 100,
+                    }}
                 >
-                    <input type="hidden" id="m" name="m" value="service" />
-                    <input
-                        type="hidden"
-                        id="token_version_id"
-                        name="token_version_id"
-                        value={tokenVersionId}
-                    />
-                    <input
-                        type="hidden"
-                        id="enc_data"
-                        name="enc_data"
-                        value={encData}
-                    />
-                    <input
-                        type="hidden"
-                        id="integrity_value"
-                        name="integrity_value"
-                        value={integrityValue}
-                    />
-                    <button type="submit">본인 인증</button>
-                </form>
+                    <form
+                        ref={formRef}
+                        name="form"
+                        id="form"
+                        action="https://nice.checkplus.co.kr/CheckPlusSafeModel/service.cb"
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            backgroundColor: "white",
+                            paddingTop: 25,
+                            borderRadius: 10,
+                        }}
+                    >
+                        <input type="hidden" id="m" name="m" value="service" />
+                        <input
+                            type="hidden"
+                            id="token_version_id"
+                            name="token_version_id"
+                            value={tokenVersionId}
+                        />
+                        <input
+                            type="hidden"
+                            id="enc_data"
+                            name="enc_data"
+                            value={encData}
+                        />
+                        <input
+                            type="hidden"
+                            id="integrity_value"
+                            name="integrity_value"
+                            value={integrityValue}
+                        />
+                        <div
+                            style={{
+                                marginLeft: 20,
+                                marginRight: 20,
+                                fontSize: 17,
+                            }}
+                        >
+                            휴대폰 본인인증이 필요합니다.
+                        </div>
+                        <div style={{ marginTop: 7, fontSize: 17 }}>
+                            진행하시겠습니까?
+                        </div>
+                        <div
+                            style={{
+                                marginTop: 20,
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "space-around",
+                                width: "100%",
+                            }}
+                        >
+                            <button
+                                onClick={cancel}
+                                style={{
+                                    width: "50%",
+                                    paddingTop: 15,
+                                    paddingBottom: 15,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    border: 0,
+                                    borderBottomLeftRadius: 10,
+                                    backgroundColor: "#E6E6E6",
+                                    color: "#08252E",
+                                    fontSize: 17,
+                                }}
+                            >
+                                취소
+                            </button>
+                            <button
+                                type="submit"
+                                style={{
+                                    width: "50%",
+                                    paddingTop: 15,
+                                    paddingBottom: 15,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    border: 0,
+                                    borderBottomRightRadius: 10,
+                                    backgroundColor: "#FC5F00",
+                                    color: "white",
+                                    fontSize: 17,
+                                }}
+                            >
+                                확인
+                            </button>
+                        </div>
+                    </form>
+                </div>
             )}
         </>
     );
