@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import queryString from "query-string";
+import { ThreeDots } from "react-loader-spinner";
 
 const SERVER = "https://altegoo.shop";
 
@@ -115,13 +116,33 @@ function Certification() {
 
     return (
         <>
-            {loading ? null : (
+            {loading ? (
                 <div
                     style={{
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        marginTop: 100,
+                        marginTop: 300,
+                    }}
+                >
+                    <ThreeDots
+                        height="80"
+                        width="80"
+                        radius="9"
+                        color="white"
+                        ariaLabel="three-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClassName=""
+                        visible={true}
+                    />
+                </div>
+            ) : (
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginTop: 300,
                     }}
                 >
                     <form
@@ -135,7 +156,7 @@ function Certification() {
                             alignItems: "center",
                             justifyContent: "center",
                             backgroundColor: "white",
-                            paddingTop: 25,
+                            paddingTop: 35,
                             borderRadius: 10,
                         }}
                     >
@@ -160,19 +181,19 @@ function Certification() {
                         />
                         <div
                             style={{
-                                marginLeft: 20,
-                                marginRight: 20,
-                                fontSize: 17,
+                                marginLeft: 30,
+                                marginRight: 30,
+                                fontSize: 20,
                             }}
                         >
                             휴대폰 본인인증이 필요합니다.
                         </div>
-                        <div style={{ marginTop: 7, fontSize: 17 }}>
+                        <div style={{ marginTop: 7, fontSize: 20 }}>
                             진행하시겠습니까?
                         </div>
                         <div
                             style={{
-                                marginTop: 20,
+                                marginTop: 30,
                                 display: "flex",
                                 flexDirection: "row",
                                 justifyContent: "space-around",
@@ -192,7 +213,7 @@ function Certification() {
                                     borderBottomLeftRadius: 10,
                                     backgroundColor: "#E6E6E6",
                                     color: "#08252E",
-                                    fontSize: 17,
+                                    fontSize: 20,
                                 }}
                             >
                                 취소
@@ -201,8 +222,8 @@ function Certification() {
                                 type="submit"
                                 style={{
                                     width: "50%",
-                                    paddingTop: 15,
-                                    paddingBottom: 15,
+                                    paddingTop: 20,
+                                    paddingBottom: 20,
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
@@ -210,7 +231,7 @@ function Certification() {
                                     borderBottomRightRadius: 10,
                                     backgroundColor: "#FC5F00",
                                     color: "white",
-                                    fontSize: 17,
+                                    fontSize: 20,
                                 }}
                             >
                                 확인
