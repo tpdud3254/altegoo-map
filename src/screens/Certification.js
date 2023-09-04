@@ -110,8 +110,9 @@ function Certification() {
         window.ReactNativeWebView.postMessage(str);
     };
 
-    const cancel = () => {
-        sendMessage("cancel");
+    const cancel = (e) => {
+        e.preventdefault();
+        sendMessage(JSON.stringify({ result: "cancel" }));
     };
 
     return (
