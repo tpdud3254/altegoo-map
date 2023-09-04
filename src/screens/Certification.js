@@ -67,13 +67,9 @@ function Certification() {
 
                 sendMessage(JSON.stringify(sendData));
                 console.log(sendData);
-
-                setLoading(false);
             }
         } catch (error) {
             console.log(error);
-        } finally {
-            setLoading(false);
         }
     };
 
