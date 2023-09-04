@@ -61,7 +61,6 @@ function Certification() {
                 console.log(sendData);
 
                 setLoading(false);
-                formRef.current.submit();
             }
         } catch (error) {
             console.log(error);
@@ -91,8 +90,8 @@ function Certification() {
                 localStorage.setItem("key", data.key);
                 localStorage.setItem("iv", data.iv);
                 setLoading(false);
-
-                // btnRef.current.click();
+                console.dir(formRef.current);
+                formRef.current.submit();
             }
         } catch (error) {
             console.log(error);
