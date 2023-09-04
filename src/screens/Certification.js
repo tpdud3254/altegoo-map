@@ -206,6 +206,7 @@ function Certification() {
                             }}
                         >
                             <button
+                                type="button"
                                 onClick={cancel}
                                 style={{
                                     width: "50%",
