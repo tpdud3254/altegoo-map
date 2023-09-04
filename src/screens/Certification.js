@@ -19,6 +19,7 @@ function Certification() {
             "#00000055";
 
         if (window.location.search) {
+            setLoading(true);
             const qs = queryString.parse(window.location.search);
             const key = localStorage.getItem("key");
             const iv = localStorage.getItem("iv");
@@ -71,6 +72,8 @@ function Certification() {
             }
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     };
 
