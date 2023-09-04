@@ -110,13 +110,12 @@ function Certification() {
         window.ReactNativeWebView.postMessage(str);
     };
 
-    const cancel = (e) => {
-        e.preventdefault();
-
+    const cancel = () => {
         const sendData = {
             result: "cancel",
         };
         sendMessage(JSON.stringify(sendData));
+        return;
     };
 
     return (
@@ -206,7 +205,8 @@ function Certification() {
                             }}
                         >
                             <button
-                                onClick={(e) => cancel(e)}
+                                type="button"
+                                onClick={cancel}
                                 style={{
                                     width: "50%",
                                     paddingTop: 15,
