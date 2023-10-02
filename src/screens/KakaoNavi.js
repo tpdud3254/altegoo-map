@@ -1,14 +1,20 @@
 import { useEffect } from "react";
 import { ThreeDots } from "react-loader-spinner";
+import queryString from "query-string";
 
 function KakaoNavi() {
     useEffect(() => {
+        const parsed = queryString.parse(window.location.search);
+
+        if (!parsed) return;
+
+        const { x, y } = parsed;
+
         const script = document.createElement("script");
         script.innerHTML = `         
         Kakao.Navi.start({
-            name: '현대백화점 판교점',
-            x: 127.11205203011632,
-            y: 37.39279717586919,
+            x: ${x},
+            y: ${y},
             coordType: 'wgs84',
           });
    `;
