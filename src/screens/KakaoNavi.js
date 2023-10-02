@@ -14,8 +14,8 @@ function KakaoNavi() {
         script.innerHTML = `         
         Kakao.Navi.start({
             name:'${name}',
-            x: ${x},
-            y: ${y},
+            x: ${Number(x)},
+            y: ${Number(y)},
             coordType: 'wgs84',
           });
    `;
