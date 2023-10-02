@@ -4,6 +4,7 @@ import Map2 from "./screens/Map2";
 import Payment from "./screens/Payment";
 import Certification from "./screens/Certification";
 import SignUpCertification from "./screens/SignUpCertification";
+import KakaoNavi from "./screens/KakaoNavi";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     path="/certification/signup"
                     element={<SignUpCertification />}
                 />
+                <Route path="/navi" element={<KakaoNavi />} />
             </Routes>
         </div>
     );
