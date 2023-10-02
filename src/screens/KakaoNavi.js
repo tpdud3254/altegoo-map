@@ -30,7 +30,7 @@ function KakaoNavi() {
                 height="80"
                 width="80"
                 radius="9"
-                color="white"
+                color="black"
                 ariaLabel="three-dots-loading"
                 wrapperStyle={{}}
                 wrapperClassName=""
