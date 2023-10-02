@@ -8,11 +8,12 @@ function KakaoNavi() {
 
         if (!parsed) return;
 
-        const { x, y } = parsed;
+        const { x, y, name } = parsed;
 
         const script = document.createElement("script");
         script.innerHTML = `         
         Kakao.Navi.start({
+            name:'${name}',
             x: ${x},
             y: ${y},
             coordType: 'wgs84',
