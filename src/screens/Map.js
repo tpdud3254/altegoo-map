@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 function Map() {
     const [lat, setLat] = useState("");
     const [lng, setLng] = useState("");
+
     useEffect(() => {
         document.addEventListener("message", async (event) => {
             const parsed = JSON.parse(event.data);
-
             try {
                 const response = await axios.get(
                     "https://dapi.kakao.com/v2/local/search/address.json",
@@ -17,7 +17,7 @@ function Map() {
                         },
                         headers: {
                             Authorization:
-                                "KakaoAK 86e0df46fbae745bb4c658276b280088",
+                                "KakaoAK 07a5d13dcca072b2964e88b10e488ba3",
                         },
                     }
                 );
@@ -31,6 +31,8 @@ function Map() {
     }, []);
 
     useEffect(() => {
+        if (lat === "" && lng === "") return;
+
         const script = document.createElement("script");
         script.innerHTML = `         
             var roadviewContainer = document.getElementById('roadview'); //로드뷰를 표시할 div

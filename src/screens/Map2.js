@@ -17,7 +17,7 @@ function Map2() {
                         },
                         headers: {
                             Authorization:
-                                "KakaoAK 86e0df46fbae745bb4c658276b280088",
+                                "KakaoAK 07a5d13dcca072b2964e88b10e488ba3",
                         },
                     }
                 );
@@ -29,6 +29,8 @@ function Map2() {
     }, []);
 
     useEffect(() => {
+        if (lat === "" && lng === "") return;
+
         const script = document.createElement("script");
         script.innerHTML = `         
             var roadviewContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
