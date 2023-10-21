@@ -148,7 +148,7 @@ function Certification() {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        marginTop: 300,
+                        marginTop: "30vh",
                     }}
                 >
                     <form
@@ -164,6 +164,7 @@ function Certification() {
                             backgroundColor: "white",
                             paddingTop: 35,
                             borderRadius: 10,
+                            width: "80vw",
                         }}
                     >
                         <input type="hidden" id="m" name="m" value="service" />
@@ -190,9 +191,12 @@ function Certification() {
                                 marginLeft: 30,
                                 marginRight: 30,
                                 fontSize: 20,
+                                textAlign: "center",
                             }}
                         >
-                            휴대폰 본인인증이 필요합니다.
+                            휴대폰 본인인증이
+                            <br />
+                            필요합니다.
                         </div>
                         <div style={{ marginTop: 7, fontSize: 20 }}>
                             진행하시겠습니까?
