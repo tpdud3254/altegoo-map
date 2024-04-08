@@ -24,6 +24,7 @@ function Payment() {
                     card_quota: "0,2,3",
                     escrow: false,
                     // separately_confirmed:true
+                    test_deposit: true,
                 },
             });
 
