@@ -23,8 +23,7 @@ function Payment() {
                     open_type: "iframe",
                     card_quota: "0,2,3",
                     escrow: false,
-                    // separately_confirmed:true
-                    test_deposit: true,
+                    // test_deposit: true,
                 },
             });
 
