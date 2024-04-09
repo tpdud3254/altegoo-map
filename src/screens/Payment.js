@@ -21,8 +21,9 @@ function Payment() {
                 },
                 extra: {
                     open_type: "iframe",
-                    card_quota: "0,2,3",
+                    // card_quota: "0,2,3",
                     escrow: false,
+                    ...parsed.extra,
                     // test_deposit: true,
                 },
             });
